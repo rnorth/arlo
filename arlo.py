@@ -1373,7 +1373,7 @@ class Arlo(object):
     def GetRecording(self, url, chunk_size=4096):
         """ Returns the whole video from the presignedContentUrl. """
         video = ''
-        r = requests.get(url, stream=True)
+        r = self.request.get(url, stream=True)
         r.raise_for_status()
 
         for chunk in r.iter_content(chunk_size):
@@ -1386,7 +1386,7 @@ class Arlo(object):
 
         url: presignedContentUrl
         """
-        r = requests.get(url, stream=True)
+        r = self.request.get(url, stream=True)
         r.raise_for_status()
         for chunk in r.iter_content(chunk_size):
             yield chunk
